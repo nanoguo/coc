@@ -63,6 +63,20 @@ def sync_attack_log():
             )
 
 
+def check_who_not_attack():
+    # get attack log
+    data = coc_sdk.get_capitalraid_log()
+    log = data.get('items', [])
+    current_log = {}
+    if log:
+        current_log = log[0]
+
+    attack_members = current_log.get('members', [])
+    clan_members = ClanMembers.objects.filter(in_clan=1).all()
+    print(attack_members)
+    print(clan_members)
+
+
 if __name__ == '__main__':
     sync_clan_members()
     # sync_user_info()
