@@ -72,13 +72,20 @@ def check_who_not_attack():
         current_log = log[0]
 
     attack_members = current_log.get('members', [])
+    attack_members_tags = [am['tag'] for am in attack_members]
     clan_members = ClanMembers.objects.filter(in_clan=1).all()
+    clan_members_tags = [cm.tag for cm in clan_members]
     print(attack_members)
     print(clan_members)
+    print('========以下成员未进行都城突袭========')
+    for c in clan_members_tags:
+        if c not in attack_members_tags:
+            print(c)
 
 
 if __name__ == '__main__':
-    sync_clan_members()
+    # sync_clan_members()
     # sync_user_info()
     # sync_attack_log()
+    check_who_not_attack()
     pass
