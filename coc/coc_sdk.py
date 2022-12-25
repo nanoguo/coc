@@ -1,5 +1,5 @@
 import requests
-import settings
+from coc import settings
 import urllib.parse
 
 clan_tag = urllib.parse.quote_plus('#2802GQRV8')
